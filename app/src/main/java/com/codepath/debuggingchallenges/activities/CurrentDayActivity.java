@@ -2,6 +2,8 @@ package com.codepath.debuggingchallenges.activities;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.widget.TextView;
 
 import com.codepath.debuggingchallenges.R;
@@ -11,17 +13,23 @@ import java.util.Calendar;
 public class CurrentDayActivity extends AppCompatActivity {
 
     TextView tvDay;
+    private final static String TAG = "DateBug";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_day);
-        tvDay = (TextView) findViewById(R.id.tvDay);
-        tvDay.setText(getDayOfMonth());
+        tvDay = (TextView)findViewById(R.id.tvDay);
+        tvDay.setText(""+ getDayOfMonth());
+        Log.i(TAG, "end create");
     }
 
     private int getDayOfMonth() {
+        Log.i(TAG,"called Get Day of Month");
         Calendar cal = Calendar.getInstance();
-        return cal.get(Calendar.DAY_OF_MONTH);
+        Log.i(TAG, "cal getInst called");
+        int date = cal.get(Calendar.DAY_OF_MONTH);
+        Log.i(TAG, "date retrieved");
+        return date;
     }
 }
